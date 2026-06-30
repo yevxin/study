@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생기부 나침반</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+     <style> body {font-family: 'Noto Sans KR', sans-serif;
+      background-color: mistyrose ;
+      color: #1a1814; margin: 0; padding: 0; }
+        header { background-color:#ffe4e1;
+            padding: 16px 24px;
+      border-bottom: 1px solid palevioletred;}
+        header h1 {margin: 0;
+      font-size: 22px;
+      color: mediumvioletred;}
+       main { max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px;}
+ footer {text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: #6b6760;
+      border-top: 1px solid palevioletred;;}
+
+      #yejin {text-align: center;
+      margin-bottom: 40px;}
+
+    #yejin h2 {font-size: 28px;
+      margin-bottom: 8px;}
+
+    #yejin p {color: #6b6760;
+      font-size: 15px;}
+
+    #menu-grid {display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;}
+
+    .menu-card {background: #ffffff;
+      border: 1px solid palevioletred;;
+      border-radius: 14px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;}
+
+    .menu-card span { font-size: 32px;}
+
+    .menu-card h3 {font-size: 14px;
+      margin: 10px 0 6px;}
+
+    .menu-card p {font-size: 12px;
+      color: #6b6760;}
+
+     .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: mediumvioletred;
+      transition: all 0.2s ease;}
+      
+      .section {
+      display: none;
+      margin-top: 48px;
+    }
+
+    .section.active {
+      display: block;
+    }
+     .menu-card.active {
+      border-color: mediumvioletred;
+      background-color: #fff0f3;
+    }
+    #filter-bar {
+      display: flex;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1.5px solid palevioletred;
+      background: white;
+      color: #6b6760;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: mediumvioletred;
+      color: white;
+      border-color: mediumvioletred;
+    }
+
+    #book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .book-card {
+      background: white;
+      border: 1px solid palevioletred;
+      border-radius: 14px;
+      padding: 20px;
+      cursor: pointer;
+    }
+
+    .book-tag {
+      font-size: 11px;
+      font-weight: 700;
+      background: #fff0f3;
+      color: mediumvioletred;
+      padding: 3px 10px;
+      border-radius: 10px;
+    }
+
+    .book-card h4 {
+      font-size: 15px;
+      margin: 12px 0 6px;
+    }
+
+    .book-card p {
+      font-size: 13px;
+      color: #6b6760;
+    }
+    #link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .link-card {
+      background: white;
+      border: 1px solid palevioletred;
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: mediumvioletred;
+    }
+
+    .link-card span {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .link-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1814;
+      margin-bottom: 4px;
+    }
+
+    .link-card p {
+      font-size: 12px;
+      color: #6b6760;
+    }
+#mentor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .mentor-card {
+      background: white;
+      border: 1px solid palevioletred;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .mentor-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mentor-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: #fff0f3;
+      border: 2px solid palevioletred;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .mentor-header h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .mentor-header p {
+      font-size: 12px;
+      color: #6b6760;
+    }
+
+    .mentor-univ {
+      display: inline-block;
+      background: mediumvioletred;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mentor-card > p {
+      font-size: 13px;
+      color: #6b6760;
+      line-height: 1.7;
+    }
+
+    #faq-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid palevioletred;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      padding: 16px 20px;
+      background: none;
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1814;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-q:hover { background: #fff0f3; }
+
+    .faq-arrow {
+      font-size: 14px;
+      color: #6b6760;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 13px;
+      color: #6b6760;
+      line-height: 1.75;
+      border-top: 1px solid #ffe4e1;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+  
+    #book-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .book-card {
+      background: white;
+      border: 1px solid palevioletred;
+      border-radius: 14px;
+      padding: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column; /* 위에서 아래로 행을 나누어 정렬 */
+      align-items: flex-start;
+    }
+
+    /* 1번째 행: 계열 태그 */
+    .book-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      background: #fff0f3;
+      color: mediumvioletred;
+      padding: 4px 12px;
+      border-radius: 10px;
+      margin-bottom: 12px; 
+    }
+
+    /* 2번째 행: 책 이름 */
+    .book-card h4 {
+      font-size: 17px;
+      margin: 0 0 8px 0;
+      color: #1a1814;
+    }
+
+    /* 3번째 행: 탐구 주제 및 내용 */
+    .book-card p {
+      font-size: 14px;
+      color: #6b6760;
+      margin: 0 0 12px 0;
+    }
+
+    .book-detail {
+      width: 100%;
+      background: #fff8f9;
+      padding: 12px;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+ </style>
+</head>
+<body>
+    <header>
+    <h1>🧭 생기부 나침반</h1>
+  </header>
+  
+  <main>
+    <div id="yejin">
+         <h2>막막한 학교생활, 이 사이트 하나면 해결!</h2>
+    <p>생기부부터 수행평가까지 한 곳에서 확인하세요</p>
+    </div>
+    <div id="menu-grid">
+    <div class="menu-card" onclick="switchMenu('books')">
+      <span>📚</span>
+      <h3>도서 & 탐구 주제</h3>
+      <p>계열별 필독 도서와 생기부 탐구 예시</p>
+    </div>
+    <div class="menu-card" onclick="switchMenu('links')">
+      <span>🔗</span>
+      <h3>입시 필수 링크</h3>
+      <p>커리어넷, 대입포털 등 바로가기</p>
+    </div>
+    <div class="menu-card" onclick="switchMenu('calendar')">
+      <span>📅</span>
+      <h3>교내 활동 캘린더</h3>
+      <p>주요 대회·행사 일정과 준비 팁</p>
+    </div>
+    <div class="menu-card" onclick="switchMenu('mentor')">
+      <span>🎓</span>
+      <h3>선배 멘토링</h3>
+      <p>합격 수기와 입시 Q&A</p>
+    </div>
+ <div id="sec-books" class="section">
+    <h2>📚 도서 & 탐구 주제</h2>
+    <p> 관련 계열을 선택하세요! </p>
+     <div id="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('all', this)">전체</button>
+    <button class="filter-btn" onclick="filterCards('인문', this)">🏛 인문</button>
+    <button class="filter-btn" onclick="filterCards('사회', this)">📊 사회</button>
+    <button class="filter-btn" onclick="filterCards('교육', this)">📖 교육</button>
+    <button class="filter-btn" onclick="filterCards('자연', this)">🔬 자연</button>
+    <button class="filter-btn" onclick="filterCards('공학', this)">⚙️ 공학</button>
+    <button class="filter-btn" onclick="filterCards('의약', this)">🏥 의약</button>
+    <button class="filter-btn" onclick="filterCards('예체능', this)">🎨 예체능</button>
+ </div>
+ <div id="book-grid">
+    <div class="book-card" data-category="인문">
+      <span class="book-tag">🏛 인문</span>
+      <h4>정의란 무엇인가</h4>
+      <p>마이클 샌델 · 법학·철학 계열 필수 도서</p>
+    </div>
+ 
+    <div class="book-card" data-category="인문">
+      <span class="book-tag">🏛 인문</span>
+      <h4>사피엔스</h4>
+      <p>유발 하라리 · 역사·사회 계열 추천</p>
+    </div>
+
+    <div class="book-card" data-category="자연">
+      <span class="book-tag">🔬 자연</span>
+      <h4>이기적 유전자</h4>
+      <p>리처드 도킨스 · 생명과학 계열 필독</p>
+    </div>
+ 
+
+    <div class="book-card" data-category="공학">
+      <span class="book-tag">⚙️ 공학</span>
+      <h4>생각하는 기계</h4>
+      <p>줄리언 메탈프 · AI·SW 계열 필수</p>
+    </div>
+     <div class="book-card" data-category="예체능">
+      <span class="book-tag">🎨 예체능</span>
+      <h4>예술가여, 무엇이 두려운가</h4>
+      <p>데이비드 베일스 · 미술·디자인 계열</p>
+      </div>
+
+      <div class="book-card" data-category="사회">
+      <span class="book-tag">📊 사회</span>
+      <h4>총, 균, 쇠</h4>
+      <p>재레드 다이아몬드 · 사회·경제·정치 계열 추천</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 왜 어떤 사회는 발전하고 어떤 사회는 뒤처지는가?</p>
+        <p>⭐ 꿀팁: 현재 국제 사회 불평등 문제와 연결하면 탐구 깊이가 달라져요!</p>
+      </div>
+    </div>
+
+    <div class="book-card" data-category="사회">
+      <span class="book-tag">📊 사회</span>
+      <h4>21세기 자본</h4>
+      <p>토마 피케티 · 경제·사회 계열 필독</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 자본주의는 왜 불평등을 심화시키는가?</p>
+        <p>⭐ 꿀팁: 우리나라 부동산 문제나 소득 격차 데이터와 연결해보세요!</p>
+      </div>
+    </div>
+
+    <div class="book-card" data-category="의약">
+      <span class="book-tag">🏥 의약</span>
+      <h4>의사는 무엇으로 사는가</h4>
+      <p>폴 칼라니티 · 의학·간호 계열 필독</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 의료 현장에서 의사의 윤리적 딜레마는 어떻게 해결되는가?</p>
+        <p>⭐ 꿀팁: 의대 진학 희망자라면 진로 확신을 보여주는 소재로 최고예요!</p>
+      </div>
+    </div>
+
+    <div class="book-card" data-category="의약">
+      <span class="book-tag">🏥 의약</span>
+      <h4>우리는 왜 잠을 자야 할까</h4>
+      <p>매슈 워커 · 의학·생명과학 계열 추천</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 수면 부족이 청소년 건강과 학습 능력에 미치는 영향</p>
+        <p>⭐ 꿀팁: 우리 학교 학생들 수면 시간 설문 조사와 연결하면 탐구가 생생해져요!</p>
+      </div>
+    </div>
+
+    <div class="book-card" data-category="교육">
+      <span class="book-tag">📖 교육</span>
+      <h4>배움의 발견</h4>
+      <p>타라 웨스트오버 · 교육·사범 계열 추천</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 제도권 교육 밖에서도 진정한 배움이 가능한가?</p>
+        <p>⭐ 꿀팁: 교육 불평등 문제와 연결하면 사범대 면접에서도 써먹을 수 있어요!</p>
+      </div>
+    </div>
+
+    <div class="book-card" data-category="교육">
+      <span class="book-tag">📖 교육</span>
+      <h4>아이의 사생활</h4>
+      <p>EBS 다큐프라임 · 교육·심리 계열 필독</p>
+      <div class="book-detail">
+        <p>💡 탐구 주제: 아이의 자존감 형성에 부모와 환경은 어떤 영향을 미치는가?</p>
+        <p>⭐ 꿀팁: 교육심리학과 연결해서 탐구하면 교대·사범대 진학에 유리해요!</p>
+      </div></div><div id="sec-links" class="section"></div></div></div>
+
+  <div id="sec-links" class="section">
+    <h2>🔗 입시 필수 링크</h2>
+    <p> 클릭하면 바로 해당 사이트로 이동해요! </p>
+     <div id="link-grid">
+    <a class="link-card" href="https://www.career.go.kr" target="_blank">
+      <span>🎯</span>
+      <div>
+        <h4>커리어넷</h4>
+        <p>직업·학과 탐색, 진로 심리검사</p>
+      </div>
+    </a>
+    <a class="link-card" href="https://www.adiga.kr" target="_blank">
+      <span>🏛</span>
+      <div>
+        <h4>대입정보포털 어디가</h4>
+        <p>대학별 전형 정보, 합격자 성적</p>
+      </div>
+    </a>
+    <a class="link-card" href="https://www.riss.kr" target="_blank">
+      <span>📖</span>
+      <div>
+        <h4>RISS 학술정보</h4>
+        <p>논문·학술자료 무료 검색</p>
+      </div>
+    </a>
+    <a class="link-card" href="https://www.index.go.kr" target="_blank">
+      <span>📊</span>
+      <div>
+        <h4>통계청 e-나라지표</h4>
+        <p>국가 통계 데이터 탐구 활용</p>
+      </div>
+    </a>
+    <a class="link-card" href="https://ourworldindata.org" target="_blank">
+      <span>🌏</span>
+      <div>
+        <h4>Our World in Data</h4>
+        <p>글로벌 데이터 시각화</p>
+      </div>
+    </a>
+    <a class="link-card" href="https://www.nl.go.kr" target="_blank">
+      <span>📚</span>
+      <div>
+        <h4>국립중앙도서관</h4>
+        <p>도서·논문 무료 열람 서비스</p>
+      </div>
+    </a>
+  </div>
+  </div>
+
+  <div id="sec-calendar" class="section">
+    <h2>📅 교내 활동 캘린더</h2>
+    <p> 일정.</p>
+  </div>
+
+  <div id="sec-mentor" class="section">
+    <h2>🎓 선배 멘토링</h2>
+    <p>실제 입시를 겪었던 선배들의 이야기와 자주 묻는 입시 Q&A예요. </p></div>
+    <div id="mentor-grid">
+    <div class="mentor-card">
+      <div class="mentor-header">
+        <div class="mentor-avatar">📐</div>
+        <div>
+          <h4>공학 계열 선배</h4>
+          <p>학종 합격 수기</p>
+        </div>
+      </div>
+      <span class="mentor-univ">🎓 KAIST 기계공학과</span>
+      <p>수학·과학 올림피아드보다 꾸준한 탐구 보고서가 더 유효했어요. 3년간 탐구 주제가 같은 방향을 가리켜야 해요.</p>
+    </div>
+    <div class="mentor-card">
+      <div class="mentor-header">
+        <div class="mentor-avatar">✍️</div>
+        <div>
+          <h4>인문 계열 선배</h4>
+          <p>학종 합격 수기</p>
+        </div>
+      </div>
+      <span class="mentor-univ">🎓 연세대 철학과</span>
+      <p>독서량보다 독서 후 질문의 질이 중요해요. 책 한 권을 읽고 "나는 이 부분에 왜 반대하는가"를 써보세요.</p>
+    </div>
+    <div class="mentor-card">
+      <div class="mentor-header">
+        <div class="mentor-avatar">🔬</div>
+        <div>
+          <h4>자연과학 계열 선배</h4>
+          <p>학종 합격 수기</p>
+        </div>
+      </div>
+      <span class="mentor-univ">🎓 서울대 생명과학부</span>
+      <p>실험 결과가 실패해도 괜찮아요. "왜 실패했는가"에 대한 분석이 더 좋은 생기부를 만들어요.</p>
+    </div>
+  </div>
+
+  <!-- Q&A -->
+  <div id="faq-section">
+    <h3>💬 자주 묻는 질문 (Q&A)</h3>
+
+    <div class="faq-item" id="faq-0">
+      <button class="faq-q" onclick="toggleFaq(0)">
+        <span>Q. 생기부에 쓸 독서 권수는 어느 정도가 좋나요?</span>
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        💬 권수보다 질이 중요해요. 10권을 읽고 "재미있었다"고만 쓰는 것보다, 3권을 읽고 각각 탐구 주제와 연결해서 쓰는 게 훨씬 강력해요.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-1">
+      <button class="faq-q" onclick="toggleFaq(1)">
+        <span>Q. 진로를 아직 못 정했어요. 어떤 활동을 해야 하나요?</span>
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        💬 1학년은 다양하게 탐색해도 괜찮아요. 커리어넷 직업 흥미 검사도 도움이 돼요. 다만 같은 활동을 반복하기보다 인문·자연·공학 중 어느 쪽에 더 끌리는지 느껴보세요.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-2">
+      <button class="faq-q" onclick="toggleFaq(2)">
+        <span>Q. 수행평가도 생기부에 연결할 수 있나요?</span>
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        💬 당연히요! 수행평가 주제를 내 진로와 연결하는 게 가장 좋은 전략이에요. 국어 발표 수행평가라면 내 탐구 주제를 소재로 활용하세요. 수행평가 준비 = 생기부 소재 준비가 되는 거예요.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-3">
+      <button class="faq-q" onclick="toggleFaq(3)">
+        <span>Q. 동아리는 학교에 없는 걸 만들 수 있나요?</span>
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        💬 학교마다 다르지만 자율 동아리 창설을 허용하는 경우가 많아요. 비슷한 관심사를 가진 친구 3~5명과 담당 교사를 섭외하면 가능해요. 담임 선생님께 먼저 여쭤보세요!
+      </div>
+    </div>
+
+
+  </div>
+</main>
+
+   <footer>
+    <p>제작:박예진 </p>
+  </footer>
+ <script> function switchMenu(id) {
+      // 모든 섹션 숨기기
+      document.querySelectorAll('.section').forEach(s => {
+        s.classList.remove('active');
+      });
+
+      // 모든 카드 active 제거
+      document.querySelectorAll('.menu-card').forEach(c => {
+        c.classList.remove('active');
+      });
+
+      // 클릭한 섹션만 보이게
+      document.getElementById('sec-' + id).classList.add('active');
+
+      // 클릭한 카드에 active 추가
+      event.currentTarget.classList.add('active');
+    }
+    function filterCards(cat, btn) {
+      // 필터 버튼 active 표시
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      // 카드 필터링
+      document.querySelectorAll('.book-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    function toggleFaq(i) {
+      document.getElementById('faq-' + i).classList.toggle('open');
+    }
+    </script>
+  
+  </div>
+</body>
+</html>
